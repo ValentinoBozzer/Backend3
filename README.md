@@ -2,25 +2,31 @@
 
 ## Instrucciones para correr con Docker
 
-1. Construir la imagen:
+1. Construir la imagen (opcional, ya está publicada):
 
 ```bash
-docker build -t tuusuario/adoptme:latest .
+docker build -t valentinobozzer/adoptme:latest .
 ```
 
-2. Ejecutar el contenedor:
+2. O descargar la imagen ya publicada:
 
 ```bash
-docker run -d -p 8080:8080 --env-file .env tuusuario/adoptme:latest
+docker pull valentinobozzer/adoptme:latest
 ```
 
-3. Acceder a la API en [http://localhost:8080/api/docs](http://localhost:8080/api/docs)
+3. Ejecutar el contenedor:
+
+```bash
+docker run -d -p 8080:8080 --env-file .env valentinobozzer/adoptme:latest
+```
+
+4. Acceder a la API en [http://localhost:8080/api/docs](http://localhost:8080/api/docs)
 
 ---
 
 ## Imagen en DockerHub
 
-[https://hub.docker.com/r/tuusuario/adoptme](https://hub.docker.com/r/tuusuario/adoptme)
+[https://hub.docker.com/r/valentinobozzer/adoptme/tags](https://hub.docker.com/r/valentinobozzer/adoptme/tags)
 
 ---
 
