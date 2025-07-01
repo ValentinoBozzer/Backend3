@@ -11,6 +11,23 @@ import sessionsRouter from './routes/sessions.router.js';
 import mocksRouter from './routes/mocks.router.js';
 import loggerRouter from './routes/logger.router.js';
 
+// Swagger
+import swaggerUi from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'AdoptMe API',
+            version: '1.0.0',
+            description: 'Documentación de la API de AdoptMe',
+        },
+    },
+    apis: ['./src/routes/*.js'], // Aquí se buscarán los comentarios JSDoc
+};
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 const connection = mongoose.connect(`URL DE MONGO`);
@@ -23,6 +40,9 @@ app.use((req, res, next) => {
     logger.http(`${req.method} ${req.url}`);
     next();
 });
+
+// Swagger docs
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Rutas
 app.use('/api/users', usersRouter);
